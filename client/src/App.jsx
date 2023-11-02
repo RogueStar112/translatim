@@ -8,7 +8,7 @@ function App() {
   const [to, setTo] = useState("es");
 
   const [word, setWord] = useState("")
-  const [translation, setTranslation] = useState({})
+  const [translation, setTranslation] = useState("")
   
   
   // store the word we want to translate in state
@@ -25,38 +25,48 @@ function App() {
     
     setTranslation(res.data.translation)
 
+    console.log("RDT", res.data.translation)
+
   }
 
 
 
   return (
-       <form onSubmit={handleTranslate}>
-        <div className="container">
-          <select onChange={(event) => setFrom(event.target.value)}>
-            <option value="ar">Arabic</option>
-            <option value="en">English</option>
-            <option value="pl">Polish</option>
-            <option value="es">Spanish</option>
-            <option value="tr">Turkish</option>
-          </select>
-          <input placeholder="Translate" onChange={(event) => setWord(event.target.value)} />
-        </div>
+      <div className="w-screen h-screen bg-sky-700">
+        <h1 className="text-white">Translate App!</h1>
+        <form onSubmit={handleTranslate} className="flex max-w-md mx-auto my-auto">
+          <div className="flex">
+            <select className="rounded-tl-lg rounded-bl-lg" onChange={(event) => setFrom(event.target.value)}>
+              <option value="ar">Arabic</option>
+              <option value="en">English</option>
+              <option value="pl">Polish</option>
+              <option value="es">Spanish</option>
+              <option value="tr">Turkish</option>
+            </select>
+            <input className="text-center" placeholder="Translate" onChange={(event) => setWord(event.target.value)} />
+          </div>
 
-        <div className="container">
-          <select onChange={(event) => setTo(event.target.value)}>
-            <option value="ar">Arabic</option>
-            <option value="en">English</option>
-            <option value="pl">Polish</option>
-            <option value="es">Spanish</option>
-            <option value="tr">Turkish</option>
-          </select>
-          {/* <input placeholder="Translate" onChange={(event) => setTranslation(event.target.value)} /> */}
-          <div className="output">{translation.translation}</div>
-        </div>
+          <p className="bg-white">
+          to
+          </p>
 
-        <button type="submit" />
-      </form>
+          <div className="">
+            <select className="rounded-br-lg rounded-tr-lg" onChange={(event) => setTo(event.target.value)}>
+              <option value="ar">Arabic</option>
+              <option value="en">English</option>
+              <option value="pl">Polish</option>
+              <option value="es">Spanish</option>
+              <option value="tr">Turkish</option>
+            </select>
+            {/* <input placeholder="Translate" onChange={(event) => setTranslation(event.target.value)} /> */}
+          
+          </div>
 
+          <button className="w-16 h-4" type="submit">Submit</button>
+        </form>
+
+        <div className="output"><p>{translation}</p></div>
+      </div>
   );
 }
 
